@@ -1,8 +1,9 @@
 
 import { useState } from 'react';
 import { login } from '../services/api';
+import'./auth.css';
 
-function Login() {
+function Login({onLogin}) {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -15,7 +16,8 @@ function Login() {
       const data = await login(username, password);
 
       console.log('Login successful:', data);
-      setMessage('Du er logget ind!');
+      onLogin();
+      setMessage('Du er logget ind');
 
     } catch (error) {
       setMessage(error.message);

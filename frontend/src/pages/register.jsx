@@ -1,7 +1,8 @@
 
 import { useState } from 'react';
 import { register } from '../services/api';
-import './Register.css';
+import './register.css';
+import'./auth.css';
 
 function Register() {
 
