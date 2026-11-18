@@ -1,5 +1,5 @@
 
-function Dashboard() {
+function Dashboard({ onImport }) {
   return (
     <div className="dashboard">
       <header className="dashboard-header">
@@ -32,10 +32,10 @@ function Dashboard() {
           </div>
 
           <div className="card">
-            <h3>Tilføj bil</h3>
-            <p>Registrer en ny bil i din garage</p>
-            <button>Tilføj bil</button>
-          </div>
+  <h3>Tilføj bil</h3>
+  <p>Registrer en ny bil i din garage</p>
+  <button onClick={onImport}>Tilføj bil</button>
+</div>
         </section>
       </main>
     </div>

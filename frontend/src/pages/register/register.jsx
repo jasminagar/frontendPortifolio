@@ -1,8 +1,7 @@
-
 import { useState } from 'react';
-import { register } from '../services/api';
+import { register } from '../../services/api';
 import './register.css';
-import'./auth.css';
+import '../../shared/auth.css';
 
 function Register() {
 

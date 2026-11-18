@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
-import { login } from '../services/api';
-import'./auth.css';
+import { login } from '../../services/api';
+import '../../shared/auth.css';
 
 function Login({onLogin}) {
 
@@ -14,6 +14,7 @@ function Login({onLogin}) {
 
     try {
       const data = await login(username, password);
+      localStorage.setItem('token', data.token)
 
       console.log('Login successful:', data);
       onLogin();
