@@ -1,4 +1,3 @@
-
 const API_URL = 'http://165.245.241.134:7070/api/v1';
 
 export async function importCar(registrationNumber, token) {

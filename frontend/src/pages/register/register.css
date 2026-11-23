@@ -12,14 +12,14 @@
   flex-direction: column;
   width: 350px;
   padding: 35px;
-  background-color: white;
+  background-color: pink;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px #0000001a;
 }
 
 .register-form h1 {
   text-align: center;
-  color: #2563eb;
+  color: #eb2592;
 }
 
 .register-form h2 {
@@ -41,17 +41,14 @@
 
 .register-form button {
   padding: 12px;
-  background-color: #2563eb;
-  color: white;
+  background-color: hwb(316 35% 27%);
+  color: rgb(7, 0, 0);
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
 }
 
-.register-form button:hover {
-  background-color: #1d4ed8;
-}
 
 .register-form button:disabled {
   opacity: 0.6;

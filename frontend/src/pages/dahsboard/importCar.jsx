@@ -1,3 +1,4 @@
+import CarCard from '../../components/carCard';
 
 import { useState } from 'react';
 import { importCar } from '../../services/import';
@@ -48,7 +49,7 @@ function Import() {
       {car && (
         <div>
           <h3>Importeret bil</h3>
-          <pre>{JSON.stringify(car, null, 2)}</pre>
+           <CarCard car={car} />
         </div>
       )}
     </div>

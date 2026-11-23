@@ -1,39 +1,31 @@
+import { CarList } from "../../components/carList";
+import { useState } from "react";
 
-function Dashboard({ onImport }) {
+function Dashboard({ onImport, cars }) {
+  const [showCars, setShowCars] = useState(false);
+
   return (
     <div className="dashboard">
-      <header className="dashboard-header">
-        <h1>MyGarage</h1>
-        <button>Log ud</button>
-      </header>
-
-      <nav className="dashboard-nav">
-        <a href="#">Dashboard</a>
-        <a href="#">Mine biler</a>
-        <a href="#">Service</a>
-        <a href="#">Indstillinger</a>
-      </nav>
 
       <main>
         <h2>Dashboard</h2>
-        <p>Velkommen til MyGarage!</p>
 
         <section className="dashboard-cards">
           <div className="card">
             <h3>Mine biler</h3>
-            <p>Se dine registrerede biler</p>
-            <button>Se biler</button>
+            <button onClick={() => setShowCars(!showCars)}>
+              {showCars ? "Skjul biler" : "Se dine biler"}
+            </button>
+            {showCars && <CarList cars={cars} />}
           </div>
 
           <div className="card">
             <h3>Service</h3>
-            <p>Hold styr på dine serviceeftersyn</p>
             <button>Se service</button>
           </div>
 
           <div className="card">
   <h3>Tilføj bil</h3>
-  <p>Registrer en ny bil i din garage</p>
   <button onClick={onImport}>Tilføj bil</button>
 </div>
         </section>

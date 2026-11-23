@@ -1,0 +1,18 @@
+
+.car-card {
+  background-color: hsl(336, 55%, 53%);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #d1229a;
+  box-shadow: 0 2px 5px rgba(203, 28, 150, 0.08);
+}
+
+.car-card h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.car-card p {
+  margin: 8px 0;
+  color: #de0b12;
+}

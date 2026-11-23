@@ -42,3 +42,22 @@ export async function register(username, password){
   return response.json();
 
 }
+
+export async function getCarsForUser(username, token) {
+    const response = await fetch(
+        `${API_URL}/cars/user/${encodeURIComponent(username)}`,
+        {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                Accept: 'application/json'
+            }
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error('Kunne ikke hente biler');
+    }
+
+    return await response.json();
+}
