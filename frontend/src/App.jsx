@@ -12,6 +12,7 @@ function App() {
   const [showImport, setShowImport] = useState(false);
   const [cars, setCars] = useState([]);
   const [username, setUsername] = useState(null);
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -35,24 +36,36 @@ function App() {
    function handleLogin(data){
     setIsLoggedIn(true);
     setUsername(data.username);
+    navigate('/dashboard', { replace: true });
   }
 
-  if (!isLoggedIn) {
-    return (
-      <div className="auth-container">
-        <Login onLogin={handleLogin} />
-        <Register />
-      </div>
-    );
-  }
-
-  if (showImport) {
-    return <Import />;
-  }
-
-  return <Dashboard onImport={ () => 
-  setShowImport(true)}
-  cars={cars} />;
+  return (
+    <Routes>
+      <Route
+        path="/login"
+        element={<Login onLogin={handleLogin}/>}
+      />
+      <Route path="/register" element={<Register />} />
+      <Route
+        path="/dashboard"
+        element={
+          isLoggedIn
+            ? <Dashboard onImport={() => navigate('/cars/import')} cars={cars} />
+            : <Navigate to="/login" replace />
+        }
+      />
+      <Route
+        path="/cars/import"
+        element={
+          isLoggedIn
+            ? <Import />
+            : <Navigate to="/login" replace />
+        }
+      />
+      <Route path="/" element={
+        <Navigate to={isLoggedIn ? '/dashboard' : '/login'} replace />} />
+    </Routes>
+  )
 }
 
 export default App;
