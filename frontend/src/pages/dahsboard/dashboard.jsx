@@ -4,7 +4,7 @@ export function DashboardLayout() {
   return <Outlet />;
 }
 
-function Dashboard({ onImport, showCars, cars }) {
+function Dashboard({ onImport, showCars }) {
 
   return (
     <div className="dashboard">

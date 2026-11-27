@@ -1,42 +1,37 @@
+import { useEffect, useState } from 'react';
+import facade from '../../services/apiFacade';
 import { CarList } from '../../components/carList';
-import { useState } from 'react';
-import { getCarsForUser } from '../../services/api';
 
-function ShowCars({username, cars, isLoading, error }) {
-     const token = localStorage.getItem('token');
-     const [message, setMessage] = useState('');
-     const [car, setCar] = useState(null);
+function ShowCars({ username }) {
+const [cars, setCars] = useState([]);
+const [error, setError] = useState('');
+const [isLoading, setIsLoading] = useState(false);
 
-      async function handleShowCars(e) {
-         e.preventDefault();
-         setMessage('');
-         setCar(null);
-     
-         try {
-     
-           const data = await getCarsForUser(username, token);
-     
-           setCar(data);
-         } catch (error) {
-           setMessage(error.message);
-         }
-       }
+useEffect(() =>{
+  if (!username) return;
+
+  setIsLoading(true);
+  setError('');
+  facade.fetchData(`/cars/user/${encodeURIComponent(username)}`)
+    .then(data => setCars(data))
+    .catch(error => {
+      setError(error.message);
+      console.error('Kunne ikke hente biler:', error);
+    })
+    .finally(() => setIsLoading(false));
+}, [username]);
 
   return (
-    <main>
+    <div>
       <h2>Mine biler</h2>
-      {isLoading ? (
-        <p>Henter biler...</p>
-      ) : error ? (
-        <p>{error}</p>
-      ) : cars.length > 0 ? (
-        <CarList cars={cars} />
-      ) : (
-        <p>Du har ingen biler endnu.</p>
-      )}
-    </main>
+      {isLoading && <p>Henter biler...</p>}
+      {error && <p>{error}</p>}
+
+      {!isLoading && !error && cars.length === 0 && <p>Du har ingen biler endnu.</p>}
+
+      {!isLoading && !error && cars.length > 0 && <CarList cars={cars} />}
+    </div>
   );
 }
-
 
 export default ShowCars;
