@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Login from './pages/login/login';
 import Register from './pages/register/register';
-import Dashboard from './pages/dahsboard/dashboard';
+import Dashboard, { DashboardLayout } from './pages/dahsboard/dashboard';
 import Import from './pages/dahsboard/importCar';
 import { getCarsForUser } from './services/api';
 import { Navigate, Route, Routes, useNavigate } from 'react-router';
@@ -52,28 +52,23 @@ function App() {
         path="/dashboard"
         element={
           isLoggedIn
-            ? <Dashboard onImport={() => navigate(`/cars/import`)} 
-            showCars={() => navigate(`/cars/showAll`)} cars={cars}/>
+            ? <DashboardLayout />
             : <Navigate to="/login" replace />
         }
-      />
-      <Route
-        path="/cars/import"
-        element={
-          isLoggedIn
-            ? <Import />
-            : <Navigate to="/login" replace />
-        }
-      />
-
-       <Route
-        path="/cars/showAll"
-        element={
-          isLoggedIn
-            ? <ShowCars username ={username} cars={cars} />
-            : <Navigate to="/login" replace />
-        }
-      />
+      >
+        <Route
+          index
+          element={
+            <Dashboard
+              onImport={() => navigate('/dashboard/cars/import')}
+              showCars={() => navigate('/dashboard/cars')}
+              cars={cars}
+            />
+          }
+        />
+        <Route path="cars" element={<ShowCars username={username} cars={cars} />} />
+        <Route path="cars/import" element={<Import />} />
+      </Route>
       
       <Route path="/" element={
         <Navigate to={isLoggedIn ? `/dashboard` : `/login`} replace />} />

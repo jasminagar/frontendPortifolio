@@ -1,3 +1,9 @@
+import { Outlet } from 'react-router';
+
+export function DashboardLayout() {
+  return <Outlet />;
+}
+
 function Dashboard({ onImport, showCars, cars }) {
 
   return (
