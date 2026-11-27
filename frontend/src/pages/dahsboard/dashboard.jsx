@@ -1,8 +1,4 @@
-import { CarList } from "../../components/carList";
-import { useState } from "react";
-
-function Dashboard({ onImport, cars }) {
-  const [showCars, setShowCars] = useState(false);
+function Dashboard({ onImport, showCars, cars }) {
 
   return (
     <div className="dashboard">
@@ -13,10 +9,7 @@ function Dashboard({ onImport, cars }) {
         <section className="dashboard-cards">
           <div className="card">
             <h3>Mine biler</h3>
-            <button onClick={() => setShowCars(!showCars)}>
-              {showCars ? "Skjul biler" : "Se dine biler"}
-            </button>
-            {showCars && <CarList cars={cars} />}
+            <button onClick={showCars}>Se alle mine biler</button>
           </div>
 
           <div className="card">

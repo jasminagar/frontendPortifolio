@@ -5,6 +5,7 @@ import Dashboard from './pages/dahsboard/dashboard';
 import Import from './pages/dahsboard/importCar';
 import { getCarsForUser } from './services/api';
 import { Navigate, Route, Routes, useNavigate } from 'react-router';
+import ShowCars from './pages/dahsboard/showCars';
 
 
 function App() {
@@ -46,11 +47,13 @@ function App() {
         element={<Login onLogin={handleLogin}/>}
       />
       <Route path="/register" element={<Register />} />
+      
       <Route
         path="/dashboard"
         element={
           isLoggedIn
-            ? <Dashboard onImport={() => navigate('/cars/import')} cars={cars} />
+            ? <Dashboard onImport={() => navigate(`/cars/import`)} 
+            showCars={() => navigate(`/cars/showAll`)} cars={cars}/>
             : <Navigate to="/login" replace />
         }
       />
@@ -62,8 +65,18 @@ function App() {
             : <Navigate to="/login" replace />
         }
       />
+
+       <Route
+        path="/cars/showAll"
+        element={
+          isLoggedIn
+            ? <ShowCars username ={username} cars={cars} />
+            : <Navigate to="/login" replace />
+        }
+      />
+      
       <Route path="/" element={
-        <Navigate to={isLoggedIn ? '/dashboard' : '/login'} replace />} />
+        <Navigate to={isLoggedIn ? `/dashboard` : `/login`} replace />} />
     </Routes>
   )
 }

@@ -1,4 +1,4 @@
-import CarCard from '../../components/carCard';
+import CarCard from '../../components/CarCard';
 
 import { useState } from 'react';
 import { importCar } from '../../services/import';

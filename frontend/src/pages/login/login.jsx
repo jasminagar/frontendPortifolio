@@ -17,7 +17,7 @@ function Login({onLogin}) {
       localStorage.setItem('token', data.token)
 
       console.log('Login successful:', data);
-      onLogin(data);
+      onLogin(username);
       setMessage('Du er logget ind');
 
     } catch (error) {

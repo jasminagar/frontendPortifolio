@@ -1,4 +1,4 @@
-import CarCard from "./carCard";
+import CarCard from "./CarCard";
 
 export function CarList({cars}){
 return(
